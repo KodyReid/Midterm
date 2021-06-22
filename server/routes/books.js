@@ -30,8 +30,10 @@ router.get('/', (req, res, next) => {
 //DISPLAY ADD PAGE
 
 //  GET the Book Details page in order to add a new Book
-router.get('/details', (req, res, next) => {
-  res.render('books/details', {title: 'Add Book'});
+router.get('/details/', (req, res, next) => {
+  
+  
+  res.render('books/details', { title: 'Add a Book', page: 'details', book: ''});
   /*****************
    * ADD CODE HERE *
    *****************/
@@ -42,10 +44,7 @@ router.get('/details', (req, res, next) => {
 
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/details', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
+    
      let newBook = Book({
       "Title": req.body.Title,
       "Description": req.body.Description,
