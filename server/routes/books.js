@@ -4,24 +4,30 @@ let router = express.Router();
 let mongoose = require('mongoose');
 
 // define the book model
-let book = require('../models/books');
+let Book = require('../models/books');
+
+
+//DISPLAYING LIST PAGE
+
 
 /* GET books List page. READ */
 router.get('/', (req, res, next) => {
   // find all books in the books collection
-  book.find( (err, books) => {
-    if (err) {
+  Book.find((err, books) => {
+    if (err) 
+    {
       return console.error(err);
     }
-    else {
-      res.render('books/index', {
-        title: 'Books',
-        books: books
-      });
+    else
+    {
+      res.render('books/index', {title: 'Books', books: books});
     }
   });
 
 });
+
+
+//DISPLAY ADD PAGE
 
 //  GET the Book Details page in order to add a new Book
 router.get('/details', (req, res, next) => {
@@ -32,13 +38,15 @@ router.get('/details', (req, res, next) => {
 
 });
 
+//PROCESS ADD PAGE
+
 // POST process the Book Details page and create a new Book - CREATE
-router.post('/add', (req, res, next) => {
+router.post('/details', (req, res, next) => {
 
     /*****************
      * ADD CODE HERE *
      *****************/
-     let newBook = book({
+     let newBook = Book({
       "Title": req.body.Title,
       "Description": req.body.Description,
       "Price": req.body.Price,
@@ -47,7 +55,7 @@ router.post('/add', (req, res, next) => {
 
      });
 
-     book.create(newBook, (err, book) => {
+     Book.create(newBook, (err, Book) => {
        if(err)
        {
          console.log(err);
@@ -55,12 +63,17 @@ router.post('/add', (req, res, next) => {
        }
        else
        {
-         res.redirect('books/index')
+         res.redirect('/books');
        }
      });
 }); 
 
 
+
+
+
+
+//EDIT PAGE HERE
 
 // GET the Book Details page in order to edit an existing Book
 router.get('/details/:id', (req, res, next) => {
@@ -70,7 +83,7 @@ router.get('/details/:id', (req, res, next) => {
      *****************/
      let id = req.params.id;
 
-     book.findById(id, (err, bookToEdit) => 
+     Book.findById(id, (err, bookToEdit) => 
      {
          if(err)
          {
@@ -79,18 +92,20 @@ router.get('/details/:id', (req, res, next) => {
          }
          else
          {
-             res.render('books/details',{title: 'Edit Book', book: bookToEdit});
+             res.render('books/details', {title: 'Edit Book', book: bookToEdit});
          }
      });
 });
 
 // POST - process the information passed from the details form and update the document
-router.post('/:id', (req, res, next) => {
+
+router.post('/details/:id', (req, res, next) => {
   let id = req.params.id
     /*****************
      * ADD CODE HERE *
      *****************/
-     let updatedBook = book({
+     let updatedBook = Book({
+       "_id": id,
       "Title": req.body.Title,
       "Description": req.body.Description,
       "Price": req.body.Price,
@@ -99,7 +114,7 @@ router.post('/:id', (req, res, next) => {
 
      });
 
-     book.updateOne({_id: id}, updatedBook, (err) => {
+     Book.updateOne({_id: id}, updatedBook, (err) => {
        if(err)
        {
          console.log(err);
@@ -107,7 +122,7 @@ router.post('/:id', (req, res, next) => {
        }
        else
        {
-         res.redirect('books/index')
+         res.redirect('/books')
        }
      });
 
@@ -126,7 +141,7 @@ router.get('/delete/:id', (req, res, next) => {
      *****************/
      let id = req.params.id;
 
-     book.remove({_id: id}, (err) => {
+     Book.remove({_id: id}, (err) => {
          if(err)
          {
              console.log(err);
@@ -135,7 +150,7 @@ router.get('/delete/:id', (req, res, next) => {
          else
          {
              //refresh contact-list
-             res.redirect('books/index');
+             res.redirect('/books');
          }
  
      });
