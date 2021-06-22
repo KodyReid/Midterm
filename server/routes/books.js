@@ -30,7 +30,6 @@ router.get('/', (req, res, next) => {
       res.render('books/index', {title: 'Books', books: books});
     }
   });
-
 });
 
 
@@ -124,13 +123,11 @@ router.post('/details/:id', (req, res, next) => {
          res.redirect('/books')
        }
      });
-
-
-
-
-    
-
 });
+
+
+// DELETE FUNCTION
+
 
 // GET - process the delete by user id
 router.get('/delete/:id', (req, res, next) => {
@@ -147,11 +144,9 @@ router.get('/delete/:id', (req, res, next) => {
              res.end(err);
          }
          else
-         {
-             //refresh contact-list
+         {             
              res.redirect('/books');
-         }
- 
+         } 
      });
 });
 
