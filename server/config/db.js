@@ -1,3 +1,11 @@
+/*    File Name: db.js
+      Author: Kody Reid
+      Student Number: 301164732
+      Application Name: COMP229-M2021-MidTerm-301164732
+      Date: June 22, 2021
+*/
+
+
 module.exports = {
   //local MongoDB deployment ->
   //"URI": "mongodb://localhost/books229"

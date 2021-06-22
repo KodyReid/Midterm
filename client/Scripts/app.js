@@ -108,7 +108,7 @@ $.fn.pageMe = function(opts){
   $(".btn-danger").click(function(event){
     if(!confirm("Are you sure?")) {
       event.preventDefault();
-      location.href = '/books';
+      location.href = '/books';   // had to correct this, was routing to /games
     }
   });
 

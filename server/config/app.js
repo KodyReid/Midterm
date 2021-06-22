@@ -1,3 +1,10 @@
+/*    File Name: app.js
+      Author: Kody Reid
+      Student Number: 301164732
+      Application Name: COMP229-M2021-MidTerm-301164732
+      Date: June 22, 2021
+*/
+
 // moddules for node and express
 let createError = require('http-errors');
 let express = require('express');

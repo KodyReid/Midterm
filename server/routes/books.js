@@ -1,3 +1,10 @@
+/*    File Name: books.js
+      Author: Kody Reid
+      Student Number: 301164732
+      Application Name: COMP229-M2021-MidTerm-301164732
+      Date: June 22, 2021
+*/
+
 // modules required for routing
 let express = require('express');
 let router = express.Router();
@@ -27,20 +34,17 @@ router.get('/', (req, res, next) => {
 });
 
 
-//DISPLAY ADD PAGE
+//ADD PAGE FUNCTIONS
+
 
 //  GET the Book Details page in order to add a new Book
-router.get('/details/', (req, res, next) => {
-  
-  
-  res.render('books/details', { title: 'Add a Book', page: 'details', book: ''});
+router.get('/details/', (req, res, next) => {  
+  res.render('books/details', { title: 'Add a Book', book: ''});
   /*****************
    * ADD CODE HERE *
    *****************/
 
 });
-
-//PROCESS ADD PAGE
 
 // POST process the Book Details page and create a new Book - CREATE
 router.post('/details', (req, res, next) => {
@@ -68,15 +72,11 @@ router.post('/details', (req, res, next) => {
 }); 
 
 
+//EDIT PAGE FUNCTIONS
 
-
-
-
-//EDIT PAGE HERE
 
 // GET the Book Details page in order to edit an existing Book
 router.get('/details/:id', (req, res, next) => {
-
     /*****************
      * ADD CODE HERE *
      *****************/
